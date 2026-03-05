@@ -61,12 +61,14 @@ resource "aws_s3_bucket_lifecycle_configuration" "artifacts" {
   rule {
     id     = "archive-old-artifacts"
     status = "Enabled"
-
+    
     transition {
       days          = 90
       storage_class = "STANDARD_IA"
     }
 
+    filter {}
+    
     noncurrent_version_expiration {
       noncurrent_days = 180
     }
